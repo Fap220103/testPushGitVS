@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Tulam_2.Models.Phong>
+    @foreach(var item in Model)
+            {
+        var url = "/NhanVienPhong/" + item.Maphong;
+                <a href="@url"> @item.Tenphong</a><label>|</label>
+            }

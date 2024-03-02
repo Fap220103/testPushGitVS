@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Tulam_2.Models.NhanVien>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table>
+    <tr>
+        <th>ma nhan vien</th>
+        <th>ho ten</th>
+        <th>mat khau</th>
+        <th>tuoi</th>
+        <th>dia chi</th>
+        <th>luong</th>
+        <th>ten phong</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Manv</td>
+            <td>@item.Hoten</td>
+            <td>@item.Matkhau</td>
+            <td>@item.Tuoi</td>
+            <td>@item.Diachi</td>
+            <td>@item.Luong</td>
+            <td>@Html.DisplayFor(modelitem => item.Phong.Tenphong)</td>
+             
+            <td>
+                @Html.ActionLink("Xoa", "Xoa", new { id = item.Manv })|
+                @Html.ActionLink("Sua", "Sua", new { id = item.Manv })|
+                @Html.ActionLink("ChiTiet", "ChiTiet", new { id = item.Manv })
+
+            </td>
+        </tr>
+    }
+</table>
+@Html.ActionLink("Them moi","Them")

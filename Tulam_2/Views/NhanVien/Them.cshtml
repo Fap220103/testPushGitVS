@@ -1,0 +1,80 @@
+﻿@model Tulam_2.Models.NhanVien
+@{
+    ViewBag.Title = "Them";
+}
+
+<h2>Them</h2>
+<table>
+    @using (Html.BeginForm())
+    {
+        <tr>
+            <td>Ho ten</td>
+            <td>@Html.TextBox("Hoten")<font color="red">@ViewData["Loi1"]</font></td>
+        </tr>
+        <tr>
+            <td>mat khau</td>
+            <td>@Html.TextBox("Matkhau")</td>
+        </tr>
+        <tr>
+            <td>tuoi</td>
+            <td>@Html.TextBox("Tuoi")</td>
+        </tr>
+        <tr>
+            <td>dia chi</td>
+            <td>@Html.TextBox("Diachi")</td>
+        </tr>
+        <tr>
+            <td>luong</td>
+            <td>@Html.TextBox("Luong")</td>
+        </tr>
+        <tr>
+            <td>ten phong</td>
+            <td>@Html.DropDownList("Maphong")</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Them" id="btnThem" />
+            </td>
+
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Ve danh sach", "Index");
+</div>
+<div style="color:red" id="msg"></div>
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(function () {
+            $("#btnThem").click(function () {
+                var nv = {};
+                nv.Hoten = $("#Hoten").val();
+                nv.Matkhau = $("#Matkhau").val();
+                nv.Tuoi = $("#Tuoi").val();
+                nv.Diachi = $("#Diachi").val();
+                nv.Luong = $("#Luong").val();
+                nv.Maphong = $("#Maphong").val();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("/Them")',
+                    data: JSON.stringify(nv),
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        if (response.result) {
+                            $("#msg").html("Them thanh cong");
+                        }
+                        else {
+                            $("#msg").html("Them that bai");
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+}
+
+

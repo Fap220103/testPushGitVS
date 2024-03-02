@@ -1,0 +1,48 @@
+﻿@model Tulam_2.Models.NhanVien
+@{
+    ViewBag.Title = "Xoa";
+}
+
+<h2>Xoa</h2>
+<fieldset>
+    <div>ho ten: @Model.Hoten</div>
+    <div>mat khau: @Model.Matkhau</div>
+    <div>tuoi: @Model.Tuoi</div>
+    <div>dia chi: @Model.Diachi</div>
+    <div>luong: @Model.Luong</div>
+    <div>ten phong: @Model.Phong.Tenphong</div>
+    @using(Html.BeginForm())
+            {
+                <div>
+                    <input type="submit" value="xoa" />
+                </div>
+            }
+</fieldset>
+@Html.ActionLink("Ve danh sach", "Index")
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#btnThem").click(function () {
+                var nv = {};
+                nv.Hoten = $("#Hoten").val();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("/Them")',
+                    data: JSON.stringify(nv),
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        if (response.result) {
+                            $("#msg").html("them thanh cong");
+                        }
+                        else {
+                            $("#msg").html("them that bai");
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+    }
+

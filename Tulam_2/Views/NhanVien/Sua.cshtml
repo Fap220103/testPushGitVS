@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Sua";
+}
+
+<h2>Sua</h2>
+<table>
+    @using (Html.BeginForm())
+    {
+        <tr>
+            <td>ho ten</td>
+            <td>@Html.TextBox("hoten")</td>
+        </tr>
+        <tr>
+            <td>mat khau</td>
+            <td>@Html.TextBox("matkhau")</td>
+        </tr>
+        <tr>
+            <td>tuoi</td>
+            <td>@Html.TextBox("tuoi")</td>
+        </tr>
+        <tr>
+            <td>dia chi</td>
+            <td>@Html.TextBox("diachi")</td>
+        </tr>
+        <tr>
+            <td>luong</td>
+            <td>@Html.TextBox("luong")</td>
+        </tr>
+        <tr>
+            <td>ten phong</td>
+            <td>@Html.DropDownList("Phong")</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="sua" /></td>
+            <td>@Html.ActionLink("Ve danh sach","Index")</td>
+        </tr>
+    }
+</table>
+
